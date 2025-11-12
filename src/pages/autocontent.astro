@@ -1,0 +1,93 @@
+---
+import Layout from '../layouts/BaseLayout.astro';
+---
+
+<Layout title="Автоконтент | Lunatina">
+  <main class="py-16">
+    <div class="container mx-auto px-4 max-w-2xl">
+      <h1 class="text-4xl font-bold text-center mb-12">Генератор контента</h1>
+      
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-8">
+        <div class="mb-6">
+          <label class="block text-lg font-medium mb-2" for="niche">Ваша ниша</label>
+          <input 
+            type="text" 
+            id="niche"
+            placeholder="Например: парикмахерская, ювелир, баня под ключ"
+            class="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent bg-white dark:bg-gray-700"
+          />
+        </div>
+        
+        <div class="mb-6">
+          <label class="block text-lg font-medium mb-2" for="target">Целевая аудитория</label>
+          <input 
+            type="text" 
+            id="target"
+            placeholder="Кто ваши клиенты?"
+            class="w-full px-4 py-3 border border-gray-30 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent bg-white dark:bg-gray-700"
+          />
+        </div>
+        
+        <button id="generateBtn" class="w-full py-4 bg-violet-600 hover:bg-violet-700 text-white font-bold rounded-lg transition-colors flex items-center justify-center">
+          Сгенерировать
+          <span class="ml-2 loader hidden">⏳</span>
+        </button>
+        
+        <div id="result" class="mt-8 hidden">
+          <h2 class="text-2xl font-bold mb-4">Результат</h2>
+          <div class="space-y-4">
+            <div class="p-4 bg-gray-100 dark:bg-gray-700 rounded-lg">
+              <h3 class="font-bold text-lg mb-2">Пост 1</h3>
+              <p class="text-gray-700 dark:text-gray-30">...</p>
+            </div>
+            <div class="p-4 bg-gray-100 dark:bg-gray-700 rounded-lg">
+              <h3 class="font-bold text-lg mb-2">Пост 2</h3>
+              <p class="text-gray-700 dark:text-gray-300">...</p>
+            </div>
+            <div class="p-4 bg-gray-100 dark:bg-gray-70 rounded-lg">
+              <h3 class="font-bold text-lg mb-2">Пост 3</h3>
+              <p class="text-gray-700 dark:text-gray-300">...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <script>
+    const generateBtn = document.getElementById('generateBtn');
+    const resultDiv = document.getElementById('result');
+    const loader = document.querySelector('.loader');
+    
+    generateBtn.addEventListener('click', async () => {
+      // Показываем лоадер
+      loader.classList.remove('hidden');
+      generateBtn.disabled = true;
+      
+      // Имитация задержки для "генерации"
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      // Скрываем лоадер
+      loader.classList.add('hidden');
+      generateBtn.disabled = false;
+      
+      // Показываем результат
+      resultDiv.classList.remove('hidden');
+      
+      // Моковые данные для демонстрации
+      const mockPosts = [
+        "Откройте для себя мир красоты и стиля! Наши мастера создадут для вас неповторимый образ, подчеркнут вашу индивидуальность и дадут заряд уверенности на весь день.",
+        "Качество, проверенное временем! Мы используем только профессиональные материалы и индивидуальный подход к каждому клиенту. Ваша удовлетворенность - наш приоритет.",
+        "Забота о вас начинается с первой минуты визита. Уютная атмосфера, комфортные кресла и внимательное отношение - все для того, чтобы вы чувствовали себя особенной."
+      ];
+      
+      const postElements = resultDiv.querySelectorAll('.p-4');
+      postElements.forEach((el, index) => {
+        if (index < mockPosts.length) {
+          const p = el.querySelector('p');
+          p.textContent = mockPosts[index];
+        }
+      });
+    });
+  </script>
+</Layout>

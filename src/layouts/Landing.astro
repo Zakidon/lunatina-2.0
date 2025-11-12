@@ -1,0 +1,37 @@
+---
+import Head from '../components/Head.astro';
+interface Props {
+  landing: any; // замени на тип из content.config
+}
+const { landing } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="ru">
+<Head title={landing.title} />
+<body class="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans">
+  <header class="bg-white dark:bg-gray-800 shadow">
+    <div class="container mx-auto px-4 py-6">
+      <h1 class="text-3xl font-bold text-gray-800 dark:text-white">{landing.hero.heading}</h1>
+      <p class="mt-2 text-gray-600 dark:text-gray-300">{landing.hero.subheading}</p>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-12">
+    <img 
+      src={landing.hero.image} 
+      alt="" 
+      class="rounded-xl shadow-lg max-w-3xl mx-auto"
+    />
+    
+    <div class="text-center mt-8">
+      <a
+        href={landing.cta.quiz ? `/quiz/${landing.cta.quiz}` : landing.cta.url}
+        class="inline-block bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-indigo-700 dark:hover:bg-indigo-800"
+      >
+        {landing.cta.text}
+      </a>
+    </div>
+  </main>
+</body>
+</html>

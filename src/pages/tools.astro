@@ -1,0 +1,62 @@
+---
+import Layout from '../layouts/BaseLayout.astro';
+---
+
+<Layout title="Инструменты | Lunatina">
+  <main class="py-16">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <h1 class="text-4xl font-bold text-center mb-12">Полезные инструменты</h1>
+      
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
+        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+          <thead class="bg-gray-50 dark:bg-gray-700">
+            <tr>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-50 dark:text-gray-300 uppercase tracking-wider">Инструмент</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-30 uppercase tracking-wider">Описание</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Процент</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Действие</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm font-medium text-gray-900 dark:text-white">Парикмахерский набор</div>
+              </td>
+              <td class="px-6 py-4">
+                <div class="text-sm text-gray-500 dark:text-gray-300">Профессиональные ножницы, расчески и утюжки для создания идеальных образов</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">30%</td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <a href="#" class="text-violet-60 hover:text-violet-900 dark:hover:text-violet-400">Подключить</a>
+              </td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm font-medium text-gray-900 dark:text-white">Ювелирная коллекция</div>
+              </td>
+              <td class="px-6 py-4">
+                <div class="text-sm text-gray-500 dark:text-gray-30">Эксклюзивные украшения ручной работы от мастеров со всей страны</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">40%</td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <a href="#" class="text-violet-600 hover:text-violet-900 dark:hover:text-violet-400">Подключить</a>
+              </td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm font-medium text-gray-900 dark:text-white">Банные аксессуары</div>
+              </td>
+              <td class="px-6 py-4">
+                <div class="text-sm text-gray-500 dark:text-gray-300">Мыло ручной работы, веники, шапочки и другие аксессуары для банного ритуала</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">25%</td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <a href="#" class="text-violet-600 hover:text-violet-900 dark:hover:text-violet-400">Подключить</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+</Layout>

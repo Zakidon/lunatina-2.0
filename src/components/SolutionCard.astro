@@ -1,0 +1,31 @@
+---
+// src/components/SolutionCard.astro
+export interface Props {
+  title: string;
+  description: string;
+  icon: string;
+  link: string;
+  color: string;
+}
+
+const { title, description, icon, link, color } = Astro.props;
+---
+
+<a href={link} class="group block p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 h-full flex flex-col">
+  <div class="flex items-start space-x-4 flex-grow">
+    <div class={`w-12 h-12 ${color} rounded-lg flex items-center justify-center flex-shrink-0`}>
+      <span class="text-2xl">{icon}</span>
+    </div>
+    <div class="flex-grow">
+      <h3 class="text-xl font-bold font-serif text-violet-600 dark:text-white mb-2 group-hover:text-violet-60 dark:group-hover:text-violet-400 transition-colors">
+        {title}
+      </h3>
+      <p class="text-gray-600 dark:text-gray-400 flex-grow">
+        {description}
+      </p>
+    </div>
+  </div>
+  <div class="mt-4 text-sm font-medium text-violet-600 dark:text-violet-400 group-hover:underline self-start">
+    Подробнее →
+  </div>
+</a>

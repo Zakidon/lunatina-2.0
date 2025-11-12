@@ -1,0 +1,53 @@
+---
+const quotes = [
+  { text: "Живи, как будто танцуешь под лунным светом!", author: "Лунатина" },
+  { text: "Код — это поэзия, а музыка — код души.", author: "Неизвестный" },
+  { text: "Создай свой вайб и неси его в мир!", author: "Крымский закат" },
+  { text: "Пиши код, как будто завтра конец света!", author: "Хакер Лунатина" },
+  { text: "Lo-fi в наушниках — код в сердце.", author: "Synthwave Bro" },
+  { text: "Бери гитару, код и кофе — ночь твоя!", author: "Лунный кодер" },
+  { text: "Крымский закат шепчет: твори, люби, мечтай.", author: "Лунатина" },
+  { text: "Синтвейв в ушах, код в руках — жизнь в кайф!", author: "Неоновая душа" },
+  { text: "Иногда, чтобы понять алгоритм жизни, надо просто отпустить цикл.", author: "Digital Будда" },
+  { text: "Сознание — это IDE, где каждая мысль компилирует реальность.", author: "NeuroDreamer" },
+  { text: "Ошибки — это не баги, а сообщения Вселенной: смени синтаксис.", author: "Inner Debugger" },
+  { text: "Когда танцуешь с хаосом, главное — не потерять ритм.", author: "Лунный Шаман" },
+  { text: "Ты не кодишь сайт — ты шьёшь пространство.", author: "Cyber Witch" },
+  { text: "Поток — это Wi-Fi Вселенной. Главное — не отваливайся.", author: "FlowSurfer" },
+  { text: "Каждая строчка кода — как мантра: повторяй, пока не просветлеешь.", author: "Zen Developer" },
+  { text: "Не бойся переписать себя — ты же open source.", author: "Anonymous Soul" },
+  { text: "Пусть твой репозиторий будет чист, а сердце — креативно замержено с космосом.", author: "Git Mystic" },
+  { text: "Если видишь баг — улыбнись. Возможно, это портал.", author: "Quantum Coder" },
+  { text: "Жизнь — не проект. Она — вечный dev build.", author: "BetaSoul" },
+  { text: "Сердце пульсирует в ритме commit — push — deploy.", author: "Code Lover" },
+  { text: "Твоё внимание — самый мощный фреймворк.", author: "Mind Architect" },
+  { text: "Когда отпускаешь контроль, открывается новый API Вселенной.", author: "Async Mystic" },
+  { text: "Будь update'ом, который исправил старый страх.", author: "Patch Note 7.7" },
+  { text: "Вдох — это import, выдох — export.", author: "BreathScript" },
+  { text: "Найди баг внутри — и перепиши свой исходник счастья.", author: "Soul Debugger" },
+  { text: "Сердце — это роутер, пропускающий любовь.", author: "WiFi Lama" },
+  { text: "Иногда лучший код — это тот, который танцует с душой, а не с логикой.", author: "Digital Бродский" },
+  { text: "Синтаксис — это лишь оболочка. Истинная магия — в пространстве между строчек.", author: "Космический Кодер" },
+  { text: "Пиши не код, а историю. Компилируй не программу, а мечту.", author: "Лунный Поэт" },
+];
+
+// Выбираем случайную цитату на сервере (SSR-safe)
+const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+---
+
+<div class="text-center flex-1">
+  <div class="psyquote">
+    <p class="text-xl md:text-2xl font-bold font-serif drop-shadow-md text-gray-800 dark:text-gray-200">{randomQuote.text}</p>
+    {randomQuote.author && <p class="text-gray-600 dark:text-gray-300 mt-2 italic">— {randomQuote.author}</p>}
+  </div>
+</div>
+
+<style>
+.psyquote {
+  animation: drift 30s ease-in-out infinite alternate;
+}
+@keyframes drift {
+  0%, 100% { transform: translateX(-1%) translateY(-2%); }
+  50% { transform: translateX(0.5%) translateY(1%); }
+}
+</style>

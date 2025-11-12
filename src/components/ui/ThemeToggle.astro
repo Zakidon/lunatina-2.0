@@ -1,0 +1,47 @@
+<script is:inline>
+ // Функция переключения темы
+  function toggleTheme() {
+    const html = document.documentElement;
+    const isDark = html.classList.contains('dark');
+    const newIsDark = !isDark;
+    
+    if (newIsDark) {
+      html.classList.add('dark');
+      localStorage.theme = 'dark';
+    } else {
+      html.classList.remove('dark');
+      localStorage.theme = 'light';
+    }
+    
+    const icon = document.getElementById('theme-icon');
+    if (icon) {
+      icon.textContent = newIsDark ? '🌙' : '☀️';
+    }
+ }
+
+  // Инициализация темы при загрузке страницы
+  document.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem('theme');
+    const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const isDark = saved === 'dark' || (saved === null && systemDark);
+
+    const html = document.documentElement;
+    const icon = document.getElementById('theme-icon');
+
+    if (isDark) {
+      html.classList.add('dark');
+      if (icon) icon.textContent = '🌙';
+    } else {
+      html.classList.remove('dark');
+      if (icon) icon.textContent = '☀️';
+    }
+ });
+</script>
+
+<button
+  class="p-2 rounded-full bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300"
+  aria-label="Переключить тему"
+  onclick="toggleTheme()"
+>
+ <span id="theme-icon">🌙</span>
+</button>

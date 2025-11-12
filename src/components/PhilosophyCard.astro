@@ -1,0 +1,24 @@
+---
+// src/components/PhilosophyCard.astro
+export interface Props {
+  icon: string;
+  title: string;
+  text: string;
+  link: string;
+  linkText: string;
+  colorClass: string;
+}
+
+const { icon, title, text, link, linkText, colorClass } = Astro.props;
+---
+
+<div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow h-full flex flex-col">
+ <div class="text-5xl mb-6">{icon}</div>
+  <h3 class={`text-2xl font-bold font-serif mb-4 ${colorClass}`}>{title}</h3>
+ <p class="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed flex-grow">
+    {text}
+  </p>
+ <a href={link} class={`inline-block font-medium ${colorClass} hover:underline self-start`}>
+    {linkText} →
+ </a>
+</div>

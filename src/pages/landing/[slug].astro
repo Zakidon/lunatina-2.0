@@ -1,0 +1,13 @@
+---
+import Layout from '../../layouts/Landing.astro';
+import { getEntry } from 'astro:content';
+
+const { slug } = Astro.params;
+const landing = await getEntry('landings', slug);
+
+if (!landing) {
+  return Astro.redirect('/404');
+}
+---
+
+<Layout landing={landing.content} />

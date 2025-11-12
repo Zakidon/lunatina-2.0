@@ -1,0 +1,88 @@
+---
+// src/components/Slider.astro
+const slides = [
+  {
+    title: "Готовый сайт за 2 недели",
+    description: "Полный набор: лендинг, форма записи, SMM-пакет",
+    cta: "Выбрать шаблон",
+    link: "/templates"
+  },
+  {
+    title: "Контент без усилий",
+    description: "10 постов, сторис и SEO-тексты за 1 минуту",
+    cta: "Сгенерировать",
+    link: "/autocontent"
+  },
+  {
+    title: "Инструменты с доходом",
+    description: "Партнёрские ссылки с бонусами до 40%",
+    cta: "Посмотреть",
+    link: "/tools"
+  }
+];
+
+let current = 0;
+---
+
+<div class="relative h-96 md:h-screen max-h-screen flex items-center justify-center px-4">
+  <div class="max-w-4xl mx-auto text-center z-10">
+    <h1 class="text-4xl md:text-6xl font-bold font-serif mb-4 animate-in fade-in slide-in-from-bottom duration-500">
+      {slides[current].title}
+    </h1>
+    <p class="text-lg md:text-xl mb-8 animate-in fade-in slide-in-from-bottom delay-100 duration-500">
+      {slides[current].description}
+    </p>
+    <a href={slides[current].link} class="inline-block px-8 py-4 bg-amber-500 hover:bg-amber-600 text-gray-900 font-bold rounded-full text-lg transition-all transform hover:scale-105 animate-in fade-in slide-in-from-bottom delay-200 duration-500">
+      {slides[current].cta}
+    </a>
+  </div>
+
+  <!-- Navigation -->
+  <button 
+    onclick={`(${() => { current = (current - 1 + slides.length) % slides.length; this.closest('div').dataset.current = current; }}())`}
+    class="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white transition-all"
+    aria-label="Предыдущий слайд"
+  >
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+    </svg>
+  </button>
+  
+  <button 
+    onclick={`(${() => { current = (current + 1) % slides.length; this.closest('div').dataset.current = current; }}())`}
+    class="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white transition-all"
+    aria-label="Следующий слайд"
+  >
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+    </svg>
+  </button>
+
+  <!-- Dots -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex space-x-2">
+    {slides.map((_, i) => (
+      <button 
+        onclick={`(${() => { current = i; this.closest('div').dataset.current = i; }}())`}
+        class={`w-2 h-2 rounded-full transition-all ${i === current ? 'bg-white w-8' : 'bg-white/50'}`}
+        aria-label={`Слайд ${i + 1}`}
+      />
+    ))}
+ </div>
+</div>
+
+<script>
+ // Auto-slide
+ let interval = setInterval(() => {
+    const btn = document.querySelector('[aria-label="Следующий слайд"]');
+    btn?.click();
+  }, 5000);
+
+  // Pause on hover
+  document.querySelector('.relative')?.addEventListener('mouseenter', () => clearInterval(interval));
+  document.querySelector('.relative')?.addEventListener('mouseleave', () => {
+    interval = setInterval(() => {
+      const btn = document.querySelector('[aria-label="Следующий слайд"]');
+      btn?.click();
+    }, 5000);
+  });
+</script>

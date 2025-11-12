@@ -1,0 +1,20 @@
+---
+import Layout from '../../layouts/BaseLayout.astro';
+import { templates } from '../../data/templates';
+---
+
+<Layout title="Шаблоны">
+  <main class="py-16">
+    <div class="container mx-auto px-4">
+      <h1 class="text-4xl font-bold text-center mb-12">Выберите нишу</h1>
+      <div class="grid md:grid-cols-3 gap-8">
+        {templates.map(t => (
+          <a href={`/templates/${t.slug}`} class="block p-6 bg-white rounded-lg shadow hover:shadow-lg transition">
+            <div class={`w-16 h-16 ${t.color} rounded-full flex items-center justify-center text-3xl mb-4`}>{t.icon}</div>
+            <h3 class="text-xl font-bold">{t.title}</h3>
+          </a>
+        ))}
+      </div>
+    </div>
+  </main>
+</Layout>

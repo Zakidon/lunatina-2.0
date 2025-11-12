@@ -1,0 +1,35 @@
+---
+import Layout from '../../layouts/BaseLayout.astro';
+interface Props {
+  params: {
+    slug: string;
+  };
+}
+
+export async function getStaticPaths() {
+  return [
+    { params: { slug: 'parikmaherskaya' } },
+    { params: { slug: 'yuvelir' } },
+    { params: { slug: 'banya' } }
+ ];
+}
+
+const { slug } = Astro.params;
+const titles: Record<string, string> = { parikmaherskaya: "Парикмахерская", yuvelir: "Ювелир", banya: "Баня" };
+const title = titles[slug] || "Шаблон";
+---
+
+<Layout title={title}>
+  <main class="py-16">
+    <div class="container mx-auto px-4 text-center">
+      <h1 class="text-4xl font-bold mb-8">{title}</h1>
+      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div class="bg-gray-100 dark:bg-gray-800 p-8 rounded-lg">Лендинг</div>
+        <div class="bg-gray-100 dark:bg-gray-800 p-8 rounded-lg">SMM-пакет</div>
+        <div class="bg-gray-100 dark:bg-gray-800 p-8 rounded-lg">Партнёрки</div>
+        <div class="bg-gray-100 dark:bg-gray-800 p-8 rounded-lg">Дроп</div>
+      </div>
+      <button class="mt-12 px-8 py-3 bg-violet-600 text-white rounded-full">Запустить</button>
+    </div>
+  </main>
+</Layout>

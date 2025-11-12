@@ -1,0 +1,27 @@
+---
+interface Props {
+  title?: string;
+}
+const { title = "Лунатина: сад мастеров" } = Astro.props;
+---
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <link rel="icon" type="image/svg+xml" href="/sunman.svg" />
+  <!-- Добавь сюда Open Graph, description и др. при необходимости -->
+  <script is:inline>
+    // Установка темы до загрузки CSS для предотвращения мигания темы
+    (function() {
+      const saved = localStorage.getItem('theme');
+      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const isDark = saved === 'dark' || (saved === null && systemDark);
+      if (isDark) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
+</head>

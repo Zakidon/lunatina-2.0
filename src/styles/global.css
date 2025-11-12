@@ -1,0 +1,35 @@
+/* src/styles/global.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Дополнительные стили */
+.focus-visible-ring {
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-600 focus-visible:ring-offset-2;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Custom color classes for rubric backgrounds */
+@layer utilities {
+  .bg-amber-light {
+    @apply bg-amber-100;
+  }
+  .bg-lavender-light {
+    @apply bg-purple-100;
+  }
+  .text-lavender-dark {
+    @apply text-purple-800;
+  }
+  .bg-neon-bg {
+    @apply bg-slate-900;
+  }
+  .text-neon-text {
+    @apply text-cyan-300;
+  }
+}

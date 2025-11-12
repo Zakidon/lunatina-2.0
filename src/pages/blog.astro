@@ -1,0 +1,104 @@
+---
+import { getCollection } from 'astro:content';
+import QuoteRotator from '../components/ui/QuoteRotator.astro';
+import ThemeToggle from '../components/ui/ThemeToggle.astro';
+
+// Получаем все посты
+const allPosts = await getCollection('blog');
+const url = new URL(Astro.request.url);
+const selectedRubric = url.searchParams.get('rubric');
+
+// Фильтруем, если задана рубрика
+const posts = selectedRubric 
+  ? allPosts.filter(post => post.data.rubric === selectedRubric)
+  : allPosts;
+
+// Уникальные рубрики для навигации
+const rubrics = [...new Set(allPosts.map(p => p.data.rubric).filter(Boolean))];
+const title = selectedRubric ? `Блог: ${selectedRubric}` : "Блог — Лунатина";
+---
+
+<!DOCTYPE html>
+<html lang="ru" class="dark:bg-gray-900">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="/sunmanW.svg" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  </head>
+  <body class="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans">
+    <header class="container mx-auto px-4 py-6 flex items-center">
+      <a href="/" class="flex items-center space-x-3 shrink-0">
+        <img src="/sunmanD.svg" class="w-10 h-10 md:w-12 md:h-12 dark:hidden" alt="Лунатина" />
+        <img src="/sunmanW.svg" class="w-10 h-10 md:w-12 md:h-12 hidden dark:block" alt="Лунатина" />
+        <span class="text-2xl font-bold font-serif">Лунатина</span>
+      </a>
+      <div class="flex-1 px-6 text-center">
+        <QuoteRotator />
+      </div>
+      <div class="shrink-0">
+        <ThemeToggle />
+      </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-12">
+      <!-- Приветствие от персонажа -->
+      <section class="mb-10 text-center">
+        <div class="inline-block p-4 rounded-full bg-gradient-to-r from-amber-100 to-orange-100 dark:from-amber-900 dark:to-orange-800 mb-6">
+          <span class="text-4xl">🎉</span>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold mb-4 font-serif">
+          {selectedRubric ? `Добро пожаловать в «${selectedRubric}»!` : "Добро пожаловать в блог!"}
+        </h1>
+        <p class="text-lg max-w-2xl mx-auto">
+          {selectedRubric 
+            ? "Здесь живут размышления, философия и любовь к процессу."
+            : "Исследуй рубрики — каждая — отдельная комната в саду."}
+        </p>
+      </section>
+
+      <!-- Навигация по рубрикам -->
+      <div class="mb-10 flex flex-wrap justify-center gap-3">
+        <a 
+          href="/blog" 
+          class={`px-4 py-2 rounded-full font-medium transition ${!selectedRubric ? 'bg-indigo-600 text-white' : 'bg-gray-200 dark:bg-gray-700'}`}
+        >
+          Все рубрики
+        </a>
+        {rubrics.map(rubric => (
+          <a 
+            href={`/blog?rubric=${encodeURIComponent(rubric)}`} 
+            class={`px-4 py-2 rounded-full font-medium transition ${selectedRubric === rubric ? 'bg-amber-600 text-white' : 'bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200'}`}
+          >
+            {rubric}
+          </a>
+        ))}
+      </div>
+
+      <!-- Список постов -->
+      {posts.length === 0 ? (
+        <p class="text-center text-gray-500">Нет постов в этой рубрике… пока!</p>
+      ) : (
+        <ul class="space-y-6">
+          {posts.map(post => (
+            <li class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition">
+              <h2 class="text-xl font-bold mb-2">
+                <a href={`/blog/${post.slug}`} class="hover:underline">{post.data.title}</a>
+              </h2>
+              {post.data.rubric && (
+                <span class="inline-block text-xs px-2 py-1 bg-amber-100 dark:bg-amber-900 text-amber-800 dark:text-amber-200 rounded-full">
+                  {post.data.rubric}
+                </span>
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
+    </main>
+
+    <footer class="py-8 text-center text-gray-500 text-sm border-t border-gray-200 dark:border-gray-800">
+      © {new Date().getFullYear()} Лунатина
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,67 @@
+---
+// src/pages/o-nas.astro
+import Layout from '../layouts/BaseLayout.astro';
+import PhilosophyCard from '../components/PhilosophyCard.astro';
+---
+
+<Layout title="О нас | Lunatina" description="Философия, технологии и сообщество">
+  <main class="min-h-screen bg-gray-50 dark:bg-gray-900 py-12 md:py-20">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <!-- Header -->
+      <div class="text-center mb-16">
+        <h1 class="text-5xl md:text-6xl font-bold font-serif text-gray-900 dark:text-white mb-6">
+          Где код поёт, а идеи расцветают
+        </h1>
+        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          Мы не студия. Мы — сад, где мастера находят готовые решения и запускают бизнес без стресса.
+        </p>
+      </div>
+
+      <!-- Philosophy Cards -->
+      <div class="grid md:grid-cols-3 gap-8 mb-20">
+        <PhilosophyCard
+          icon="🌱"
+          title="Философия"
+          text="Код — это поэзия, а сайт — зеркало души. Мы верим: творчество не в рутине, а в восторге."
+          link="/templates"
+          linkText="Выбрать шаблон"
+          colorClass="text-violet-600 dark:text-violet-400"
+        />
+        <PhilosophyCard
+          icon="⚡"
+          title="Технологии"
+          text="Astro + Tailwind + AI. Всё статично, быстро и надёжно. Никаких сложных серверов."
+          link="/tools"
+          linkText="Инструменты"
+          colorClass="text-amber-600 dark:text-amber-400"
+        />
+        <PhilosophyCard
+          icon="🤝"
+          title="Сообщество"
+          text="Мастера делятся опытом. Вы не одиноки — здесь поддержка и готовые решения."
+          link="https://t.me/lunatina"
+          linkText="Присоединиться"
+          colorClass="text-cyan-600 dark:text-cyan-400"
+        />
+      </div>
+
+      <!-- CTA -->
+      <div class="bg-gradient-to-r from-violet-50 to-amber-50 dark:from-gray-800 dark:to-gray-900 rounded-3xl p-8 md:p-12 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold font-serif mb-6">
+          Готовы запустить свой проект?
+        </h2>
+        <p class="text-lg text-gray-700 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+          Выберите шаблон, вставьте свои данные — и через 2 недели у вас будет сайт и первые клиенты.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/templates" class="px-8 py-3 bg-violet-600 hover:bg-violet-700 text-white rounded-full font-bold transition-colors">
+            Выбрать шаблон
+          </a>
+          <a href="/contact" class="px-8 py-3 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white rounded-full font-bold border border-violet-300 dark:border-violet-600 transition-colors">
+            Оставить заявку
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

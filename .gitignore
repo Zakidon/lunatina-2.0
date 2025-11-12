@@ -22,3 +22,10 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+instruction.md
+makeup.md
+src_structure_and_content.md
+.kilocode/
+.vscode/
+mcp.config.js

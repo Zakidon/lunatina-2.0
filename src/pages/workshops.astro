@@ -1,0 +1,76 @@
+---
+import Layout from '../layouts/BaseLayout.astro';
+---
+
+<Layout title="Идеи | Lunatina">
+  <main class="py-16">
+    <div class="container mx-auto px-4 max-w-2xl">
+      <h1 class="text-4xl font-bold text-center mb-12">Предложите нишу</h1>
+      
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-8">
+        <form id="workshopForm">
+          <div class="mb-6">
+            <label class="block text-lg font-medium mb-2" for="niche">Ниша</label>
+            <input 
+              type="text" 
+              id="niche"
+              required
+              placeholder="Какую нишу вы хотели бы видеть?"
+              class="w-full px-4 py-3 border border-gray-30 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent bg-white dark:bg-gray-700"
+            />
+          </div>
+          
+          <div class="mb-6">
+            <label class="block text-lg font-medium mb-2" for="description">Описание</label>
+            <textarea 
+              id="description"
+              required
+              rows="4"
+              placeholder="Расскажите подробнее о нише"
+              class="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent bg-white dark:bg-gray-700"
+            ></textarea>
+          </div>
+          
+          <div class="mb-6">
+            <label class="block text-lg font-medium mb-2" for="target">Целевая аудитория</label>
+            <input 
+              type="text" 
+              id="target"
+              required
+              placeholder="Кто потенциальные клиенты?"
+              class="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent bg-white dark:bg-gray-700"
+            />
+          </div>
+          
+          <button type="submit" class="w-full py-4 bg-violet-60 hover:bg-violet-700 text-white font-bold rounded-lg transition-colors">
+            Отправить предложение
+          </button>
+        </form>
+        
+        <div id="successMessage" class="mt-6 p-4 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-200 rounded-lg hidden">
+          Спасибо за ваше предложение! Мы рассмотрим его и свяжемся с вами.
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <script>
+    const form = document.getElementById('workshopForm');
+    const successMessage = document.getElementById('successMessage');
+    
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // В реальном приложении здесь была бы отправка данных на сервер
+      // Сейчас просто покажем сообщение об успехе
+      
+      form.reset();
+      successMessage.classList.remove('hidden');
+      
+      // Скроем сообщение через 5 секунд
+      setTimeout(() => {
+        successMessage.classList.add('hidden');
+      }, 5000);
+    });
+  </script>
+</Layout>

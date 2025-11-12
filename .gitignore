@@ -1,3 +1,9 @@
 node_modules/
 dist/
 .astro/
+.kilocode/
+.vscode/
+mcp.config.js
+instruction.md
+makeup.md
+src_structure_and_content.md
